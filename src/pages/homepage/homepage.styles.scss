@@ -1,0 +1,14 @@
+.home-page {
+  height: 100%;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: bisque;
+}
+
+@media screen and (max-width: 767px) {
+  .home-page {
+    width: 100%;
+  }
+}

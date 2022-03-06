@@ -1,0 +1,53 @@
+.menu-item {
+  justify-self: center;
+  align-self: center;
+  color: whitesmoke;
+  background-color: rgb(122, 81, 53);
+  padding: 2vmax 4vmax 4vmax 4vmax;
+  margin: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 15px;
+  max-width: 40%;
+  min-width: 300px;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 6vmax;
+    font-weight: 500;
+    padding: 0 0 1rem;
+    margin: 0;
+  }
+
+  .img-container {
+    overflow: hidden;
+
+    img {
+      aspect-ratio: 16 / 11;
+      width: 100%;
+      object-fit: cover;
+      border: var(--font-color) solid 3px;
+      border-radius: 10px;
+    }
+  }
+  &:hover,
+  &:focus {
+    animation: inHover 0.1s linear forwards;
+    cursor: pointer;
+  }
+}
+
+@keyframes inHover {
+  from {
+    transform: scale(1);
+    text-shadow: none;
+    box-shadow: none;
+  }
+  to {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    text-shadow: 0 5px 0 black;
+  }
+}

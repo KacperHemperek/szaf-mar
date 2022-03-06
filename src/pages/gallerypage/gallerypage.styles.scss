@@ -1,0 +1,15 @@
+.gallery-page {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  overflow-y: scroll;
+  .img {
+    overflow: hidden;
+    img {
+      height: 15rem;
+      width: 25rem;
+      object-fit: cover;
+    }
+  }
+}

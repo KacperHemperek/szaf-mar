@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  background-color: rgb(32, 32, 32);
+  color: whitesmoke;
+  padding: 1rem 4rem;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+
+  .footer-info {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    p {
+      font-size: 1.1rem;
+      font-weight: 200;
+    }
+  }
+}
