@@ -14,28 +14,31 @@ const importAll = (r) => {
 
 class App extends Component {
   componentDidMount() {
-    const kitchenPhotos = importAll(
-      require.context("../public/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
-    );
-    const officePhotos = importAll(
-      require.context("../public/img/biura", false, /\.(png|jpe?g|svg)$/)
-    );
-    const wardrobePhotos = importAll(
-      require.context("../public/img/szafy", false, /\.(png|jpe?g|svg)$/)
-    );
-    const bathroomPhotos = importAll(
-      require.context("../public/img/lazienki", false, /\.(png|jpe?g|svg)$/)
-    );
-    const photos = {
-      kuchnie: kitchenPhotos,
-      biura: officePhotos,
-      szafy: wardrobePhotos,
-      lazienki: bathroomPhotos,
+    const loadPhotos = async () => {
+      const { getPhotos } = this.props;
+
+      const kitchenPhotos = importAll(
+        require.context("../public/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
+      );
+      const officePhotos = importAll(
+        require.context("../public/img/biura", false, /\.(png|jpe?g|svg)$/)
+      );
+      const wardrobePhotos = importAll(
+        require.context("../public/img/szafy", false, /\.(png|jpe?g|svg)$/)
+      );
+      const bathroomPhotos = importAll(
+        require.context("../public/img/lazienki", false, /\.(png|jpe?g|svg)$/)
+      );
+
+      getPhotos({
+        kuchnie: kitchenPhotos,
+        biura: officePhotos,
+        szafy: wardrobePhotos,
+        lazienki: bathroomPhotos,
+      });
     };
 
-    getPhotos(photos);
-
-    console.log(this.props.kuchnie);
+    loadPhotos();
   }
 
   render() {
@@ -58,8 +61,8 @@ const mapDispatchToProps = (dispatch) => ({
   getPhotos: (photos) => dispatch(getPhotos(photos)),
 });
 
-const mapStateToPtops = (state) => ({
-  ...setTimeout.photos,
+const mapStateToProps = (state) => ({
+  ...state.photos,
 });
 
-export default connect(mapStateToPtops, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
