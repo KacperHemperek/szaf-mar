@@ -6,7 +6,7 @@ import "./gallerypage.styles.scss";
 class GalleryPage extends Component {
   render() {
     
-    console.log(this.props.photos)
+    
     return (
       <div className="gallery-page">
         {this.props.photos.map((img, idx) => {
@@ -23,7 +23,6 @@ class GalleryPage extends Component {
 
 const mapStateToPtops = (state) => {
   const path = window.location.pathname.replace('/', "");
-  console.log(path);
   return {photos: state.photos[path]};
 };
 

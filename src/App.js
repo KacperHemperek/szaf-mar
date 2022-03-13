@@ -13,32 +13,32 @@ const importAll = (r) => {
 };
 
 class App extends Component {
+  loadPhotos = async () => {
+    const { getPhotos } = this.props;
+
+    const kitchenPhotos = importAll(
+      require.context("../public/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
+    );
+    const officePhotos = importAll(
+      require.context("../public/img/biura", false, /\.(png|jpe?g|svg)$/)
+    );
+    const wardrobePhotos = importAll(
+      require.context("../public/img/szafy", false, /\.(png|jpe?g|svg)$/)
+    );
+    const bathroomPhotos = importAll(
+      require.context("../public/img/lazienki", false, /\.(png|jpe?g|svg)$/)
+    );
+
+    getPhotos({
+      kuchnie: kitchenPhotos,
+      biura: officePhotos,
+      szafy: wardrobePhotos,
+      lazienki: bathroomPhotos,
+    });
+  };
+
   componentDidMount() {
-    const loadPhotos = async () => {
-      const { getPhotos } = this.props;
-
-      const kitchenPhotos = importAll(
-        require.context("../public/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
-      );
-      const officePhotos = importAll(
-        require.context("../public/img/biura", false, /\.(png|jpe?g|svg)$/)
-      );
-      const wardrobePhotos = importAll(
-        require.context("../public/img/szafy", false, /\.(png|jpe?g|svg)$/)
-      );
-      const bathroomPhotos = importAll(
-        require.context("../public/img/lazienki", false, /\.(png|jpe?g|svg)$/)
-      );
-
-      getPhotos({
-        kuchnie: kitchenPhotos,
-        biura: officePhotos,
-        szafy: wardrobePhotos,
-        lazienki: bathroomPhotos,
-      });
-    };
-
-    loadPhotos();
+    this.loadPhotos();
   }
 
   render() {
