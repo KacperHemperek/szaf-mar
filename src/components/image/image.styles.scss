@@ -1,0 +1,16 @@
+.img {
+  overflow: hidden;
+  max-height: 25rem;
+  min-height: 25rem;
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .img {
+    max-height: 12rem;
+    min-height: 12rem;
+  }
+}

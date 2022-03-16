@@ -23,3 +23,19 @@
     }
   }
 }
+
+@media screen and (max-width: 414px) {
+  .footer {
+    padding: 1rem 0.5rem;
+
+    .footer-info {
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

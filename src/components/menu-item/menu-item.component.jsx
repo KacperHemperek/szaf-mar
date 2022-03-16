@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import "./menu-item.styles.scss";
 
-const MenuItem = ({ url, title, history, match }) => {
+const MenuItem = ({ url, title, history, match, img }) => {
   return (
     <div
       className="menu-item"
@@ -14,7 +14,7 @@ const MenuItem = ({ url, title, history, match }) => {
     >
       <h1>{title}</h1>
       <div className="img-container">
-        <img src="img/IMG20211214104113.jpg" alt="" />
+        <img src={img} alt="" />
       </div>
     </div>
   );

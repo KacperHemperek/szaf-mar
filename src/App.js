@@ -5,6 +5,8 @@ import "./App.css";
 import GalleryPage from "./pages/gallerypage/gallerypage.component";
 import HomePage from "./pages/homepage/homepage.component";
 import Footer from "./components/footer/footer.component";
+import Header from "./components/header/header.component";
+
 import { getPhotos } from "./redux/photos/photos.actions";
 import { connect } from "react-redux";
 
@@ -17,16 +19,16 @@ class App extends Component {
     const { getPhotos } = this.props;
 
     const kitchenPhotos = importAll(
-      require.context("../public/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
+      require.context("./assets/img/kuchnie", false, /\.(png|jpe?g|svg)$/)
     );
     const officePhotos = importAll(
-      require.context("../public/img/biura", false, /\.(png|jpe?g|svg)$/)
+      require.context("./assets/img/biura", false, /\.(png|jpe?g|svg)$/)
     );
     const wardrobePhotos = importAll(
-      require.context("../public/img/szafy", false, /\.(png|jpe?g|svg)$/)
+      require.context("./assets/img/szafy", false, /\.(png|jpe?g|svg)$/)
     );
     const bathroomPhotos = importAll(
-      require.context("../public/img/lazienki", false, /\.(png|jpe?g|svg)$/)
+      require.context("./assets/img/lazienki", false, /\.(png|jpe?g|svg)$/)
     );
 
     getPhotos({
@@ -44,12 +46,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/kuchnie" component={GalleryPage} />
-          <Route path="/szafy" component={GalleryPage} />
-          <Route path="/biura" component={GalleryPage} />
-          <Route path="/lazienki" component={GalleryPage} />
+          <Route
+            path="/kuchnie"
+            component={() => <GalleryPage key={window.location.pathname} />}
+          />
+          <Route
+            path="/szafy"
+            component={() => <GalleryPage key={window.location.pathname} />}
+          />
+          <Route
+            path="/biura"
+            component={() => <GalleryPage key={window.location.pathname} />}
+          />
+          <Route
+            path="/lazienki"
+            component={() => <GalleryPage key={window.location.pathname} />}
+          />
         </Switch>
         <Footer />
       </div>

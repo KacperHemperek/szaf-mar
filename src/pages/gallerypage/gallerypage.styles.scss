@@ -1,29 +1,17 @@
 .gallery-page {
-  width: 100%;
+  width: 85%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-gap: 1rem;
-  padding: 2rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-gap: 1.5rem;
+  padding: 2rem 2rem;
   background-color: bisque;
-  .img {
-    overflow: hidden;
-    max-height: 25rem;
-    min-height: 15rem;
-    img {
-      object-fit: cover;
-      width: 100%;
-    }
-  }
 }
 
 @media screen and (max-width: 767px) {
   .gallery-page {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-
-    .img {
-      max-height: 15rem;
-      min-height: 10rem;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-gap: 1rem;
+    width: 100%;
   }
 }
