@@ -1,10 +1,18 @@
 .img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   max-height: 25rem;
-  min-height: 25rem;
-  img {
+
+  .image-placeholder {
+    background-color: rgb(253, 210, 156);
+  }
+
+  .lazy-image {
     object-fit: cover;
     width: 100%;
+    min-height: 25rem;
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 
 import GalleryPage from "./pages/gallerypage/gallerypage.component";
@@ -8,6 +8,9 @@ import Footer from "./components/footer/footer.component";
 import Header from "./components/header/header.component";
 
 import { getPhotos } from "./redux/photos/photos.actions";
+import { turnNavigationOff } from "./redux/navigation/navigation.actions";
+import { turnSliderOff } from "./redux/slider/slider.actions";
+import { selectPage } from "./redux/navigation/navigation.actions";
 import { connect } from "react-redux";
 
 const importAll = (r) => {
@@ -43,6 +46,23 @@ class App extends Component {
     this.loadPhotos();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+
+    const path = window.location.pathname;
+    console.log(path);
+  }
+
+  onRouteChanged() {
+    const path = window.location.pathname;
+    const { turnNavigationOff, turnSliderOff, selectPage } = this.props;
+    turnNavigationOff();
+    turnSliderOff();
+    selectPage(path);
+  }
+
   render() {
     return (
       <div className="App">
@@ -72,12 +92,17 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  getPhotos: (photos) => dispatch(getPhotos(photos)),
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPhotos: (photos) => dispatch(getPhotos(photos)),
+    turnNavigationOff: () => dispatch(turnNavigationOff()),
+    turnSliderOff: () => dispatch(turnSliderOff()),
+    selectPage: (path) => dispatch(selectPage(path)),
+  };
+};
 
 const mapStateToProps = (state) => ({
   ...state.photos,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

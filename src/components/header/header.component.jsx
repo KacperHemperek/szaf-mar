@@ -1,70 +1,31 @@
 import React, { Component } from "react";
 import "./header.styles.scss";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import NavMenu from "../navbar/nav-menu.component";
+import { connect } from "react-redux";
+import { toggleNavigation } from "../../redux/navigation/navigation.actions.js";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navShown: false,
-    };
-  }
-
-  handleNavbar = () => {
-    this.setState((prevState) => ({ navShown: !prevState.navShown }));
-  };
-
-  // componentDidUpdate() {
-  //   this.setState({ navShown: false });
-  // }
-
   render() {
+    const { toggleNavigation } = this.props;
     return (
-      <nav className="main-nav">
-        <Link to="" className="logo">
-          Szaf-Mar
-        </Link>
-        <button className="hamburger" onClick={this.handleNavbar}>
-          <i className="fa fa-bars"></i>
-        </button>
-        <ul id="nav-ul" className={this.state.navShown ? "show" : null}>
-          <li>
-            <Link to="/kuchnie">
-              <div className="nav-option">Kuchnie</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/szafy">
-              <div className="nav-option">Szafy</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/biura">
-              <div className="nav-option">Biura</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/lazienki">
-              <div className="nav-option">Łazienki</div>
-            </Link>
-          </li>
-          <li>
-            <a href="tel:+48604069052" className="nav-option">
-              604 069 052
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/Szaf-Mar-572231386210625"
-              target="blank"
-            >
-              facebook
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div className="header">
+        <div className="header-container">
+          <Link to="/" className="logo">
+            Szaf-Mar
+          </Link>
+          <button className="hamburger" onClick={toggleNavigation}>
+            <i className="fa fa-bars"></i>
+          </button>
+        </div>
+        <NavMenu />
+      </div>
     );
   }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  toggleNavigation: () => dispatch(toggleNavigation()),
+});
+
+export default connect(null, mapDispatchToProps)(Header);
